@@ -7,4 +7,24 @@
     <groupId>clinic.programmming</groupId>
     <artifactId>example</artifactId>
     <version>1.0</version>
+
+    <!--
+    Example maven compiler plugin to add if our maven compiler would not compile our java
+    source code
+    See Section 4 of read me
+    See to get the plugin https://maven.apache.org/plugins/maven-compiler-plugin/examples/set-compiler-source-and-target.html
+     -->
+    <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.14.1</version>
+        <configuration>
+          <release>23</release>
+        </configuration>
+      </plugin>
+    </plugins>
+    </build>
+
 </project>
