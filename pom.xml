@@ -27,4 +27,15 @@
     </plugins>
     </build>
 
+    <!--
+    section 5: dependencies
+    -->
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.20.0</version>
+        </dependency>
+    </dependencies>
+
 </project>

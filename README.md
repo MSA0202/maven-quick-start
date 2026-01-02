@@ -1,4 +1,4 @@
-## Course Notes Section 3
+# Course Notes Section 3
 - Maven is a build tool
 - Relies on Plugins that provide default and additional functionality
 - Maven automatically detects the following folder structures:
@@ -11,7 +11,7 @@
 - 
 
 ## Running your java class through a JAR generate by Maven
-# mvn package
+### mvn package
 - You can run your java file through the generated jar
 - To generate a jar, run "mvn package" in your maven-quick-start dir
 - Then, navigate to the generated target folder ( cd target )
@@ -19,25 +19,25 @@
 - so in our case: `java -cp example-1.0.jar clinic.programming.training.Application`
 
 ## Cleaning up the build
-# mvn clean
+### mvn clean
 - is a phase part of the clean lifecycle from the jar lifecycle
 - this will remove the target folder
 - you need to cd out of the target folder first
 
 ## Multiple goals and phases in a lifecycle
-# mvn clean package
+### mvn clean package
 - allows you to clean and recompile at once!
 
 ## Local Maven Repo
-# mvn clean install
-# mvn install
+### mvn clean install
+### mvn install
 - copies the jar file out of the target into mavens local repo
 - the repo is a local cache of builds and artifacts
 - the repo is found under the .m2 folder (known as 'repository')
 - repository contains other folders that contain dependencies we have executed for maven
 - remember maven needs plugins to execute phases, plugins themselves have dependencies
 
-## Course Notes Section 4: Maven Plugins
+# Course Notes Section 4: Maven Plugins
 - They provide default functionality and behvaiours and add more features and funcationality
 - They are also dependencies that are downloaded
 - E.g. publish to server, compile, run unit test
@@ -52,7 +52,7 @@
 - So we added the following code
 `
 var list = List.of(1,2,3); // this was introduced from java 9+ onwards
-- # Run mvn clean install
+- ### Run mvn clean install
 - compiler would complain about the source for the compiler 1.8, which does not
 know of this
 `
@@ -93,9 +93,39 @@ know of this
     </build>
 `
 - When you run again, it will download some extra stuff before passing:
-# Run mvn clean install and it will pass!  ;> 
-# Can also go back to your target folder and rerun the java to see that your program runs fine!
+### Run mvn clean install and it will pass!  ;> 
+### Can also go back to your target folder and rerun the java to see that your program runs fine!
 
 
+# Course Work Notes Section 5: Maven Dependencies
+- Dependencies are a core thing 
+- They are resolved by the Maven Repo and the online Maven Central repo
+- There are 6 scopes ( compile, test, runtime, test, import, System)
+- Compile is a default scope
+- Runtime scope - for dependencies needed during running
+- Test scope - ... you can guess , not needed for compilation or deployment only testing
+
+# Testing out adding dependencies to POM file
+- in java add `import org.apache.commons.lang3.StringUtils;`
+- see the countWords method for its usage in Application.java
+- try to compile and it will fail if we didnt add the pom `mvn clean compile`
+`
+  [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.1:compile (default-compile) on project example: Compilation failure: Compilation failure:
+  [ERROR] /C:/Users/muham/OneDrive/Documents/Udemy Courses/mavenquickstart/maven-quick-start/src/main/java/clinic/programming/training/Application.java:[4,32] package org.apache.commons.lang3 does not exist
+  [ERROR] /C:/Users/muham/OneDrive/Documents/Udemy Courses/mavenquickstart/maven-quick-start/src/main/java/clinic/programming/training/Application.java:[14,29] cannot find symbol
+  [ERROR]   symbol:   variable StringUtils
+  [ERROR]   location: class clinic.programming.training.Application
+  [ERROR] -> [Help 1]
+`
+- Add the dependency to the pom.xml - visit Maven Central online to find the correct pom
+- search for commons-lang3
+`
+  <dependency>
+  <groupId>org.apache.commons</groupId>
+  <artifactId>commons-lang3</artifactId>
+  <version>3.20.0</version>
+  </dependency>
+`
+- Rerun `mvn clean compile` and it will download the dependency and then pass !
 
 

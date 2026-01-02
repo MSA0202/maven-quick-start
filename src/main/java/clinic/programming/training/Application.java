@@ -1,11 +1,18 @@
 package clinic.programming.training;
 
 import java.util.*;
+import org.apache.commons.lang3.StringUtils;
 
 public class Application {
 
     public Application() {
         System.out.println ("Inside Application");
+    }
+
+    public int countWord(String words)
+    {
+        String[] sepWords = StringUtils.split(words, ' ');
+        return (sepWords == null) ? 0 : sepWords.length;
     }
 
     public void greet() {
@@ -20,5 +27,6 @@ public class Application {
         System.out.println ("Starting Application");
         Application x = new Application();
         x.greet();
+        System.out.println(x.countWord("JELLO"));
     }
 }
