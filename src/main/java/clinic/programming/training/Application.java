@@ -9,7 +9,7 @@ public class Application {
         System.out.println ("Inside Application");
     }
 
-    public int countWord(String words)
+    public int countWords(String words)
     {
         String[] sepWords = StringUtils.split(words, ' ');
         return (sepWords == null) ? 0 : sepWords.length;
@@ -27,6 +27,6 @@ public class Application {
         System.out.println ("Starting Application");
         Application x = new Application();
         x.greet();
-        System.out.println(x.countWord("JELLO"));
+        System.out.println(x.countWords("JELLO"));
     }
 }

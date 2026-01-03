@@ -105,11 +105,11 @@ know of this
 - Runtime scope - for dependencies needed during running
 - Test scope - ... you can guess , not needed for compilation or deployment only testing
 
-# Testing out adding dependencies to POM file
+## Testing out adding dependencies to POM file
 - in java add `import org.apache.commons.lang3.StringUtils;`
 - see the countWords method for its usage in Application.java
 - try to compile and it will fail if we didnt add the pom `mvn clean compile`
-`
+- `
   [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.1:compile (default-compile) on project example: Compilation failure: Compilation failure:
   [ERROR] /C:/Users/muham/OneDrive/Documents/Udemy Courses/mavenquickstart/maven-quick-start/src/main/java/clinic/programming/training/Application.java:[4,32] package org.apache.commons.lang3 does not exist
   [ERROR] /C:/Users/muham/OneDrive/Documents/Udemy Courses/mavenquickstart/maven-quick-start/src/main/java/clinic/programming/training/Application.java:[14,29] cannot find symbol
@@ -119,7 +119,7 @@ know of this
 `
 - Add the dependency to the pom.xml - visit Maven Central online to find the correct pom
 - search for commons-lang3
-`
+- `
   <dependency>
   <groupId>org.apache.commons</groupId>
   <artifactId>commons-lang3</artifactId>
@@ -127,5 +127,44 @@ know of this
   </dependency>
 `
 - Rerun `mvn clean compile` and it will download the dependency and then pass !
+- Bonus: use `mvn dependency:tree` - maven will download the depedency plugin and use the tree goal
+  - This will then print out a tree of all dependencies and sub-dep's that our project has
+
+# Section 6: Unit Testing with Maven
+- We added the ApplicationTest.java file
+- We are going to add the junit dependency to test ( search.maven.org for junit)
+- `cd maven-quick-start` then `mvn clean test` and it will fail if dependency not added
+- So add the dependency to the pom
+- you can optionally add the scope test: <scope>test</scope> so say thats just what we wanna use
+- `<dependency>
+  <groupId>junit</groupId>
+  <artifactId>junit</artifactId>
+  <version>4.13.2</version>
+  <scope>test</scope> <--!optional-->
+</dependency>`
+- run `mvn clean compile` then `mvn clean test' and all tests should pass !
+- running `mvn clean install` will go through all phases including test !
+- `
+Inside Application
+[WARNING] Tests run: 5, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.038 s -- in clinic.programming.training.ApplicationTest
+[INFO] 
+[INFO] Results:
+[INFO]
+[WARNING] Tests run: 5, Failures: 0, Errors: 0, Skipped: 1
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.845 s
+[INFO] Finished at: 2026-01-03T09:24:14+02:00
+`
+- Additional note, if you navigate to surefire-reports in the target folder - you can access the tests simple runs and 
+reports ( xml ) that can be used for Sonar
+
+
+
+
+
+
 
 
