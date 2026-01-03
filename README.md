@@ -161,6 +161,15 @@ Inside Application
 - Additional note, if you navigate to surefire-reports in the target folder - you can access the tests simple runs and 
 reports ( xml ) that can be used for Sonar
 
+# Section 7: Maven within Eclipse
+## I skipped this due to using VSCode
+
+# Section 8: Using Archetypes
+- These are maven project templates that can be used to quick start any maven project
+- see https://maven.apache.org/archetype/index.html
+- You can choose an archetype to use by running `mvn archetype:generate` and configure it throught the terminal
+- You can also just download an archetype bundle from maven `mvn archetype:generate -DgroupdId=clinic.programming.training -DartifactId=exampl
+-darchetypeArtifactId=maven-arche-quickstart -DinteractiveMode=false` and this will create a new maven project!
 
 
 
